@@ -9,12 +9,12 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     proxyTable: {
-//  	'/': {
-//		    target: 'http://jd.kemi.moe:6080',
-//		    changeOrigin: true
-//		   }
+ 	    '/': {
+		    target: 'http://lx.hzyctools.com',
+		    changeOrigin: true
+		   }
     },
 
     // Various Dev Server settings

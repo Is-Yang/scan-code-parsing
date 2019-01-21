@@ -6,7 +6,10 @@
 
 		<div class="scan-box">
 			<span><img src="../assets/show_icon.png" /></span>
-	    	<x-button type="warn" action-type="reset" @click.native="scanCode()">码上看详情</x-button>
+	    	<x-button type="warn" action-type="reset" @click.native="scanCode()">
+				<i class="iconfont">&#xe64e;</i>
+				码上看详情
+			</x-button>
 		</div>
 	    
 	    <div class="info">
@@ -33,8 +36,8 @@
 	  	},
 	  	methods: {
 	  		scanCode(){
-	  			let url = 'http://jd.kemi.moe:6080';
-	  			this.$http.post('http://jd.kemi.moe:6080/api/weixin/config', querystring.stringify({url: url})).then(({data}) => {
+	  			let url = 'http://lx.hzyctools.com';
+	  			this.$http.get(url + '/api/weixin/config?url=' + url).then(({data}) => {
 					if (data && data.data) {
 						let res = data.data;
 						wx.config({
@@ -52,8 +55,14 @@
 				  				scanType: ["qrCode"],
 				  				success: function (res) {
 			                        let result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-			                        this.$vux.toast.text("扫描结果："+result);
-		//	                        window.location.href = result;//因为我这边是扫描后有个链接，然后跳转到该页面
+			                        this.$vux.toast.text("扫描结果：" + result);
+									this.$router.push({
+										path: '/detail',
+										query: {
+											order_no: result.order_no,
+											rhino_sign: result.rhino_sign
+										}
+									})
 			                    }
 			  				})
 			  			});
@@ -69,17 +78,18 @@
 	}
 </script>
 
-<style lang='less'>
+<style lang='less' scoped>
 	.scan-code {
 		.brand {
 			img {
 				width: 100%;
+				max-height: 100%;
 			}
 		}
 		
 		.scan-box {
 			width: 80%;
-			margin: 20px auto;
+			margin: 15% auto;
 			text-align: center;
 			span {
 				display: inline-block;
@@ -88,10 +98,14 @@
 		}
 		
 		.info {
+			position: absolute;
+			bottom: 80px;
+			z-index: 499;
+
 			padding: 20px;
-			font-size: 14px;
+			font-size: 13px;
 			h4 {
-				font-size: 16px;
+				font-size: 15px;
 			}
 		}
 	}

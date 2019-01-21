@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-  	<!--    <x-header :title="title" style="background-color:#353535;"></x-header>-->
-  	
     <router-view></router-view>
+
      <tabbar>
         <tabbar-item>
+          <i class="iconfont" slot="icon">&#xe602;</i>
           <span slot="label">微信</span>
         </tabbar-item>
         <tabbar-item>
+          <i class="iconfont" slot="icon">&#xe65b;</i>
           <span slot="label">首页</span>
         </tabbar-item>
     </tabbar>
