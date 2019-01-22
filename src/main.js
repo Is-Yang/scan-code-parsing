@@ -5,7 +5,8 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import ScanCode from './components/ScanCode'
-import CodeParsing from './components/codeParsing'
+import CodeParsing from './components/CodeParsing'
+import Contract from './components/Contract'
 import { AjaxPlugin, ToastPlugin } from 'vux'
 
 Vue.use(VueRouter)
@@ -24,6 +25,12 @@ const routes = [
     component: CodeParsing,
     meta: {
       title: '详情信息'
+    }
+  }, {
+    path: '/contract',
+    component: Contract,
+    meta: {
+      title: '恋爱合约'
     }
   }
 ]

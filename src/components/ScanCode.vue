@@ -36,8 +36,9 @@
 	  	},
 	  	methods: {
 	  		scanCode(){
-	  			let url = 'http://lx.hzyctools.com';
-	  			this.$http.get(url + '/api/weixin/config?url=' + url).then(({data}) => {
+				let url = "http://lx.hzyctools.com";
+				let _that = this;
+	  			this.$http.get(url + '/api/weixin/config?url=' + window.location.href).then(({data}) => {
 					if (data && data.data) {
 						let res = data.data;
 						wx.config({
@@ -49,15 +50,15 @@
 						    jsApiList: res.jsApiList || ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
 
+
 						wx.ready(()=> {
 			  				wx.scanQRCode({
 				  				needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
 				  				scanType: ["qrCode"],
 				  				success: function (res) {
-			                        let result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-			                        this.$vux.toast.text("扫描结果：" + result);
-									this.$router.push({
-										path: '/detail',
+			                        let result = JSON.parse(res.resultStr); // 当needResult 为 1 时，扫码返回的结果
+									_that.$router.push({
+										path: '/contract',
 										query: {
 											order_no: result.order_no,
 											rhino_sign: result.rhino_sign
@@ -83,13 +84,15 @@
 		.brand {
 			img {
 				width: 100%;
+				height: auto;
 				max-height: 100%;
+				display: block;
 			}
 		}
 		
 		.scan-box {
 			width: 80%;
-			margin: 15% auto;
+			margin: 12% auto;
 			text-align: center;
 			span {
 				display: inline-block;
@@ -99,13 +102,13 @@
 		
 		.info {
 			position: absolute;
-			bottom: 80px;
+			bottom: 55px;
 			z-index: 499;
 
-			padding: 20px;
-			font-size: 13px;
+			padding: .51rem;
+			font-size: .24rem;
 			h4 {
-				font-size: 15px;
+				font-size: .3rem;
 			}
 		}
 	}

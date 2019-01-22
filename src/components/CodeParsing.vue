@@ -49,32 +49,34 @@
 			
 		},
 	  	created() {
-			this.order_no = this.$route.query.order_no;
-			this.rhino_sign = this.$route.query.rhino_sign;
+			if (this.$route.query) {
+				this.order_no = this.$route.query.order_no;
+				this.rhino_sign = this.$route.query.rhino_sign;
 
-			let url = 'http://lx.hzyctools.com';
-	  		this.$http.get('/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
-				let res = data.data;
-				let {
-					CompanyName,
-					RealityName,
-					Stature,
-					Weight,
-					ProductName,
-					DateTime,
-					IDCardNumber
-				} = res;
+				let url = 'http://lx.hzyctools.com';
+				this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+					let res = data.data;
+					let {
+						CompanyName,
+						RealityName,
+						Stature,
+						Weight,
+						ProductName,
+						DateTime,
+						IDCardNumber
+					} = res;
 
-				this.form = {
-					companyName: CompanyName,
-					realityName: RealityName,
-					stature: Stature,
-					weight: Weight,
-					productName: ProductName,
-					dateTime: DateTime,
-					idCardNumber: IDCardNumber
-				}
-			})
+					this.form = {
+						companyName: CompanyName,
+						realityName: RealityName,
+						stature: Stature,
+						weight: Weight,
+						productName: ProductName,
+						dateTime: DateTime,
+						idCardNumber: IDCardNumber
+					}
+				})
+			}
 	  	},
 
 	}

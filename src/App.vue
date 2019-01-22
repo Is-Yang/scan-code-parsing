@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <div class="view-container">
+      <router-view></router-view>
+    </div>
 
-     <tabbar>
+    <tabbar>
         <tabbar-item>
           <i class="iconfont" slot="icon">&#xe602;</i>
           <span slot="label">微信</span>
@@ -30,7 +32,22 @@ export default {
 <style lang="less">
 @import '~vux/src/styles/reset.less';
 
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
 body {
   background-color: #fbf9fe;
+}
+#app {
+  height: 100%;
+
+  .view-container {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 55px;
+  }
 }
 </style>
