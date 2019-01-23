@@ -7,11 +7,14 @@ import App from './App'
 import ScanCode from './components/ScanCode'
 import CodeParsing from './components/CodeParsing'
 import Contract from './components/Contract'
-import { AjaxPlugin, ToastPlugin } from 'vux'
+import { AjaxPlugin, ToastPlugin, LoadingPlugin, TransferDom } from 'vux'
 
 Vue.use(VueRouter)
 Vue.use(AjaxPlugin)
 Vue.use(ToastPlugin)
+Vue.use(LoadingPlugin)
+
+Vue.directive('transfer-dom', TransferDom)
 
 const routes = [
   {
@@ -40,7 +43,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title;
+  window.document.title = to.meta.title
   next()
 })
 

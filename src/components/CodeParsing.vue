@@ -1,33 +1,40 @@
 <template>
+	<!-- 由于打印时图片都消失了，所以全部用img标签来 -->
 	<div class="code-parsing">
-		<div class="head-logo"></div>
-		<div class="code">
-			<p>合约单号</p>
-			<p class="no">{{order_no}}</p>
-		</div>
-		<div class="user-info">
-			<div>
-				<span>签约人姓名：{{form.realityName}}</span>
-				<span>性别：{{form.weight}}</span>
+		<img class="box" src="../assets/box.jpg" alt="边框"/>
+
+		<div class="parsing-content">
+			<div class="head-logo"></div>
+			<div class="code">
+				<p>合约单号</p>
+				<p class="no">{{order_no}}</p>
 			</div>
-			<div>
-				<span>心上人姓名：{{form.companyName}}</span>
-				<span>性别：{{form.stature}}</span>
+			<div class="user-info">
+				<div>
+					<span>签约人姓名：{{form.realityName}}</span>
+					<span>性别：{{form.weight}}</span>
+				</div>
+				<div>
+					<span>心上人姓名：{{form.companyName}}</span>
+					<span>性别：{{form.stature}}</span>
+				</div>
+				<div>
+					<span>身份证号码：{{form.idCardNumber}}</span>
+				</div>
 			</div>
-			<div>
-				<span>身份证号码：{{form.idCardNumber}}</span>
+			<div class="details">
+				自恋爱合约生效之日起
+				<span>3</span>年后
+				<span>10</span>年内，您们共同说出“ 我愿意 ”的那一天，
+				我们将送上“<span class="tip">{{form.productName}}</span>”见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
+
+				<img class="print" src="../assets/fingerprint.png" />
 			</div>
-		</div>
-		<div class="details">
-			自恋爱合约生效之日起
-			<span>3</span>年后
-			<span>10</span>年内，您们共同说出“ 我愿意 ”的那一天，
-			我们将送上“<span class="tip">{{form.productName}}</span>”见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
-		</div>
-		<div class="spouse"></div>
-		<div class="code">
-			<p>生效日期：{{form.dateTime}}</p>
-			<p>东莞中融股权投资有限公司</p>
+			<div class="spouse"></div>
+			<div class="code">
+				<p>生效日期：{{form.dateTime}}</p>
+				<p>东莞中融股权投资有限公司</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -49,31 +56,35 @@
 			
 		},
 	  	created() {
+			this.$vux.loading.show();
 			if (this.$route.query) {
 				this.order_no = this.$route.query.order_no;
 				this.rhino_sign = this.$route.query.rhino_sign;
 
 				let url = 'http://lx.hzyctools.com';
 				this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
-					let res = data.data;
-					let {
-						CompanyName,
-						RealityName,
-						Stature,
-						Weight,
-						ProductName,
-						DateTime,
-						IDCardNumber
-					} = res;
+					this.$vux.loading.hide();
+					if(data && data.data) {
+						let res = data.data;
+						let {
+							CompanyName,
+							RealityName,
+							Stature,
+							Weight,
+							ProductName,
+							DateTime,
+							IDCardNumber
+						} = res;
 
-					this.form = {
-						companyName: CompanyName,
-						realityName: RealityName,
-						stature: Stature,
-						weight: Weight,
-						productName: ProductName,
-						dateTime: DateTime,
-						idCardNumber: IDCardNumber
+						this.form = {
+							companyName: CompanyName,
+							realityName: RealityName,
+							stature: Stature,
+							weight: Weight,
+							productName: ProductName,
+							dateTime: DateTime,
+							idCardNumber: IDCardNumber
+						}
 					}
 				})
 			}
@@ -84,14 +95,27 @@
 
 <style lang="less" scoped>
 	.code-parsing {
-		position: absolute;
-		top:0;
-		bottom: 54px;
-		z-index: 99;
-		background: url('../assets/box.jpg') no-repeat center center;
-		background-size: 100% 100%;
-		padding: .6rem 5%;
-		font-size: .18rem;
+		position: relative;
+		padding: 30px 5%;
+		font-size: .24rem;
+		@bottom: 58px;
+		height: calc(~"100%" - @bottom);
+
+		.parsing-content {
+			height: 100%;
+			overflow: auto;
+		}
+		.box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+		}
+	
 
 		.head-logo {
 			width: 80%;
@@ -133,6 +157,12 @@
 
 			.tip {
 				color: red;
+			}
+
+			.print {
+				vertical-align: middle;
+				margin-left: -.45rem;
+    			opacity: .7;
 			}
 		}
 

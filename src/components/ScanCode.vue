@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="scan-box">
-			<span><img src="../assets/show_icon.png" /></span>
+			<img src="../assets/show_icon.jpg" class="show-logo" />
 	    	<x-button type="warn" action-type="reset" @click.native="scanCode()">
 				<i class="iconfont">&#xe64e;</i>
 				码上看详情
@@ -36,9 +36,11 @@
 	  	},
 	  	methods: {
 	  		scanCode(){
+				this.$vux.loading.show();
 				let url = "http://lx.hzyctools.com";
 				let _that = this;
 	  			this.$http.get(url + '/api/weixin/config?url=' + window.location.href).then(({data}) => {
+					this.$vux.loading.hide();
 					if (data && data.data) {
 						let res = data.data;
 						wx.config({
@@ -49,7 +51,6 @@
 						    signature: res.signature,// 必填，签名，见附录1
 						    jsApiList: res.jsApiList || ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
-
 
 						wx.ready(()=> {
 			  				wx.scanQRCode({
@@ -72,8 +73,7 @@
 			  				this.$vux.toast.text(res);
       					})
 			    	}
-		  		});
-
+				});
 	  		}
 	  	}
 	}
@@ -81,22 +81,25 @@
 
 <style lang='less' scoped>
 	.scan-code {
+		height: 100%;
+		background-color: #fff;
 		.brand {
 			img {
 				width: 100%;
 				height: auto;
-				max-height: 100%;
+				max-height: auto;
 				display: block;
 			}
 		}
 		
 		.scan-box {
 			width: 80%;
-			margin: 12% auto;
+			margin: 8% auto;
 			text-align: center;
-			span {
+			.show-logo {
+				width: 1.4rem;
 				display: inline-block;
-				margin-bottom: 10px;
+				margin-bottom: .1rem;
 			}
 		}
 		

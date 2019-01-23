@@ -1,6 +1,8 @@
 <template>
     <div class="contract-wrapper">
-        <div class="contract-logo"></div>
+        <div class="contract-logo">
+            <img src="../assets/love_logo.png" alt="恋爱合约" />
+        </div>
         <table class="table-content">
             <colgroup>
                 <col style="width: 30%"></col>
@@ -44,6 +46,8 @@
                             <div>
                                 <span>恋爱合约官网www.liwuhy.com</span>
                             </div>
+
+                            <img class="seal" src="../assets/seal.png" alt="盖章" />
                         </div>
                     </td>
                 </tr>
@@ -99,14 +103,18 @@ export default {
         }
     },
     created () {
+        this.$vux.loading.show();
         if (this.$route.query) {
             this.order_no = this.$route.query.order_no;
             this.rhino_sign = this.$route.query.rhino_sign;
 
             let url = 'http://lx.hzyctools.com';
             this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
-                this.tableData = data.data;
-                this.dateTime = data.data.DateTime;
+                this.$vux.loading.hide();
+                if (data && data.data) {
+                    this.tableData = data.data;
+                    this.dateTime = data.data.DateTime;
+                }
             })
         }
     }
@@ -122,9 +130,12 @@ export default {
         .contract-logo {
             width: 40%;
 			height: 2rem;
-			margin: .25rem auto;
-			background: url('../assets/love_logo.png') no-repeat top center;
-			background-size: contain;
+            margin: .25rem auto;
+            text-align: center;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
 
         .table-content {
@@ -144,6 +155,7 @@ export default {
         }
         
         .user-info {
+            position: relative;
             &>div{
 				display: flex;
 				margin: 5px 0;
@@ -151,7 +163,14 @@ export default {
                     width: 70%;
                     padding-right: .2rem;
 				}
-			}
+            }
+            .seal {
+                position: absolute;
+                width: 1.6rem;
+                top: -0.1rem;
+                left: 30%;
+                opacity: .8;
+            }
         }
         
     }
