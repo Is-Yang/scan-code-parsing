@@ -37,7 +37,7 @@
                         <div class="user-info">
                             <div>
                                 <span>生效日期：{{dateTime}}</span>
-                                <span>签约人姓名：</span>
+                                <span>签约人姓名：{{realityName}}</span>
                             </div>
                             <div>
                                 <span>东莞中融股权投资有限公司</span>
@@ -61,6 +61,7 @@ export default {
     data() {
         return {
             tableData: [],
+            realityName: '',
             dateTime: '',
             signDate: '',
             tableDetail: [
@@ -117,9 +118,11 @@ export default {
                     return;
                 }
                 if (data && data.data) {
-                    this.tableData = data.data;
-                    this.dateTime = data.data.DateTime;
-                    this.signDate = data.data.SignDate;
+                    let result = data.data;
+                    this.tableData = result;
+                    this.dateTime = result.DateTime;
+                    this.signDate = result.SignDate;
+                    this.realityName = result.RealityName;
                 }
             })
         }
