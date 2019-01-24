@@ -5,8 +5,8 @@
         </div>
         <table class="table-content">
             <colgroup>
-                <col style="width: 30%"></col>
-                <col style="width: 70%"></col>
+                <col style="width: 30%" />
+                <col style="width: 70%" />
             </colgroup>
             <thead>
                 <tr>
@@ -37,11 +37,11 @@
                         <div class="user-info">
                             <div>
                                 <span>生效日期：{{dateTime}}</span>
-                                <span>签字：</span>
+                                <span>签约人姓名：</span>
                             </div>
                             <div>
                                 <span>东莞中融股权投资有限公司</span>
-                                <span>日期：</span>
+                                <span>日期：{{signDate}}</span>
                             </div>
                             <div>
                                 <span>恋爱合约官网www.liwuhy.com</span>
@@ -62,6 +62,7 @@ export default {
         return {
             tableData: [],
             dateTime: '',
+            signDate: '',
             tableDetail: [
                 {
                     title: '合约单号',
@@ -111,9 +112,14 @@ export default {
             let url = 'http://lx.hzyctools.com';
             this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
                 this.$vux.loading.hide();
+                if (data.code !== 1) {
+                    this.$vux.toast.text(data.msg);
+                    return;
+                }
                 if (data && data.data) {
                     this.tableData = data.data;
                     this.dateTime = data.data.DateTime;
+                    this.signDate = data.data.SignDate;
                 }
             })
         }
@@ -160,16 +166,16 @@ export default {
 				display: flex;
 				margin: 5px 0;
 				>span:first-child {
-                    width: 70%;
-                    padding-right: .2rem;
+                    width: 60%;
+                    padding-right: .1rem;
 				}
             }
             .seal {
                 position: absolute;
                 width: 1.6rem;
-                top: -0.1rem;
+                bottom: -0.1rem;
                 left: 30%;
-                opacity: .8;
+                opacity: .58;
             }
         }
         

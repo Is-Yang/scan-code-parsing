@@ -20,7 +20,7 @@
 </template>
 
 <script>
-	import { XButton, querystring } from 'vux'
+	import { XButton } from 'vux'
 	import wx from 'weixin-js-sdk'; 
 	export default {
 		components: {
@@ -41,6 +41,10 @@
 				let _that = this;
 	  			this.$http.get(url + '/api/weixin/config?url=' + window.location.href).then(({data}) => {
 					this.$vux.loading.hide();
+					if (data.code !== 1) {
+						this.$vux.toast.text(data.msg);
+						return;
+					}
 					if (data && data.data) {
 						let res = data.data;
 						wx.config({

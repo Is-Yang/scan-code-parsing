@@ -4,7 +4,9 @@
 		<img class="box" src="../assets/box.jpg" alt="边框"/>
 
 		<div class="parsing-content">
-			<div class="head-logo"></div>
+			<div class="head-logo">
+				<img src="../assets/title.jpg" alt="logo" />
+			</div>
 			<div class="code">
 				<p>合约单号</p>
 				<p class="no">{{order_no}}</p>
@@ -64,6 +66,10 @@
 				let url = 'http://lx.hzyctools.com';
 				this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
 					this.$vux.loading.hide();
+					if (data.code !== 1) {
+						this.$vux.toast.text(data.msg);
+						return;
+					}
 					if(data && data.data) {
 						let res = data.data;
 						let {
@@ -121,8 +127,9 @@
 			width: 80%;
 			height: 115px;
 			margin: 0 auto;
-			background: url('../assets/title.jpg') no-repeat top center;
-			background-size: contain;
+			// background: url('../assets/title.jpg') no-repeat top center;
+			// background-size: contain;
+			text-align: center;
 		}
 
 		.code {
