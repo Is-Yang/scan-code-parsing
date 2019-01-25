@@ -5,7 +5,7 @@
 
 		<div class="parsing-content">
 			<div class="head-logo">
-				<img src="../assets/title.jpg" alt="logo" />
+				<img src="../assets/title.png" alt="logo" />
 			</div>
 			<div class="code">
 				<p>合约单号</p>
@@ -127,9 +127,13 @@
 			width: 80%;
 			height: 115px;
 			margin: 0 auto;
-			// background: url('../assets/title.jpg') no-repeat top center;
+			// background: url('../assets/title.png') no-repeat top center;
 			// background-size: contain;
 			text-align: center;
+
+			img {
+				height: 100%;
+			}
 		}
 
 		.code {
@@ -167,9 +171,10 @@
 			}
 
 			.print {
-				vertical-align: middle;
-				margin-left: -.45rem;
-    			opacity: .7;
+				vertical-align: -webkit-baseline-middle;
+				margin-left: -0.8rem;
+				opacity: .7;
+				height: .85rem;
 			}
 		}
 

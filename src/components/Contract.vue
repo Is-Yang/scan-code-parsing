@@ -5,8 +5,7 @@
         </div>
         <table class="table-content">
             <colgroup>
-                <col style="width: 30%" />
-                <col style="width: 70%" />
+                <col style="width: 2.1rem" />
             </colgroup>
             <thead>
                 <tr>
@@ -37,11 +36,11 @@
                         <div class="user-info">
                             <div>
                                 <span>生效日期：{{dateTime}}</span>
-                                <span>签约人姓名：{{realityName}}</span>
+                                <span>签约人姓名：</span>
                             </div>
                             <div>
                                 <span>东莞中融股权投资有限公司</span>
-                                <span>日期：{{signDate}}</span>
+                                <span>日期：</span>
                             </div>
                             <div>
                                 <span>恋爱合约官网www.liwuhy.com</span>
@@ -111,7 +110,7 @@ export default {
             this.rhino_sign = this.$route.query.rhino_sign;
 
             let url = 'http://lx.hzyctools.com';
-            this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+            this.$http.get('/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
                 this.$vux.loading.hide();
                 if (data.code !== 1) {
                     this.$vux.toast.text(data.msg);
