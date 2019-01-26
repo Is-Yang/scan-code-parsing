@@ -19,9 +19,11 @@
             </thead>
             <tbody>
                 <tr v-for="(item, index) in tableDetail" :key="index">
-                    <td>{{item.title}}</td>
+                    <td>
+                    	<span :class="item.title === '签约提示' ? 'newline' : ''">{{item.title}}</span>
+                    </td>
                     <td v-if="item.data != ''">
-                    <p class="cell">{{tableData[item.data]}}</p>
+                    	<p class="cell">{{tableData[item.data]}}</p>
                     </td>
                     <td v-if="item.value">
                         <p v-for="(val, i) in item.value" :key="i" class="cell">
@@ -35,17 +37,15 @@
                     <td colspan="2">
                         <div class="user-info">
                             <div>
-                                <span>生效日期：{{dateTime}}</span>
-                                <span>签约人姓名：</span>
-                            </div>
-                            <div>
-                                <span>东莞中融股权投资有限公司</span>
-                                <span>日期：</span>
-                            </div>
-                            <div>
-                                <span>恋爱合约官网www.liwuhy.com</span>
-                            </div>
+                                <p>生效日期：{{signDate}}</p>
+                                <p>东莞中融股权投资有限公司<p>
+                                <p>恋爱合约官网www.liwuhy.com</p>
 
+                            </div>
+                            <div>
+                                <p>签约人姓名：</p>
+                                <p>日期：</p>
+                            </div>
                             <img class="seal" src="../assets/seal.png" alt="盖章" />
                         </div>
                     </td>
@@ -62,7 +62,7 @@ export default {
             tableData: [],
             realityName: '',
             dateTime: '',
-            signDate: '',
+            signDate: '',  // 生效时间日期
             tableDetail: [
                 {
                     title: '合约单号',
@@ -132,12 +132,13 @@ export default {
 <style lang="less" scoped>
     .contract-wrapper {
         background-color: #fff;
-        padding: .25rem;
-        font-size: .26rem;
+        padding: .3rem;
+        font-size: .3rem;
+        font-family: simsun;
         
         .contract-logo {
             width: 40%;
-			height: 2rem;
+			height: 2.5rem;
             margin: .25rem auto;
             text-align: center;
             img {
@@ -152,32 +153,41 @@ export default {
             border-spacing: 0;
             display: table;
             td {
-                padding: .1rem .15rem;
+                padding: .1rem .12rem;
                 border-bottom: 1px solid #999;
                 border-right: 1px solid #999;
 
                 .cell {
                     margin: .1rem 0;
                 }
+                
+                .newline {
+            	    width: .35rem;
+				    word-break: break-word;
+				    display: block;
+				    margin: 0 auto;
+                }
             }
         }
         
         .user-info {
             position: relative;
+            padding: .5rem 0;
+            display: flex;
+            justify-content: space-around;
             &>div{
-				display: flex;
-				margin: 5px 0;
-				>span:first-child {
-                    width: 60%;
-                    padding-right: .1rem;
+				>p {
+					margin: .1rem 0;
 				}
             }
             .seal {
                 position: absolute;
-                width: 1.6rem;
-                bottom: -0.1rem;
-                left: 30%;
-                opacity: .58;
+                height: 100%;
+                top: 0;
+                bottom: 0;
+                left: 25%;
+                transform: translateX(-25%);
+                opacity: .88;
             }
         }
         
