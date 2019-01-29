@@ -20,7 +20,10 @@
             <tbody>
                 <tr v-for="(item, index) in tableDetail" :key="index">
                     <td>
-                    	<span :class="item.title === '签约提示' ? 'newline' : ''">{{item.title}}</span>
+                    	<span :class="item.title == '签约提示' ? 'newline' : ''">{{item.title}}</span>
+                    </td>
+                    <td v-if="item.title == '结婚祝福'">
+                    	<span>{{tableData['ProductName']}} / {{tableData['ContractScope']}}</span>
                     </td>
                     <td v-if="item.data != ''">
                     	<p class="cell">{{tableData[item.data]}}</p>
@@ -79,7 +82,7 @@ export default {
                     value: ['合约生效之日起三年以后十年以内']
                 },{
                     title: '结婚祝福',
-                    data: 'ProductName'
+                    data: ''
                 },{
                     title: '签约人身份证',
                     data: 'IDCardNumber'
@@ -132,14 +135,14 @@ export default {
 <style lang="less" scoped>
     .contract-wrapper {
         background-color: #fff;
-        padding: .3rem;
+        padding: 0 .3rem;
         font-size: .3rem;
         font-family: simsun;
         
         .contract-logo {
             width: 40%;
 			height: 2.5rem;
-            margin: .25rem auto;
+            margin: 0 auto;
             text-align: center;
             img {
                 max-width: 100%;
@@ -157,9 +160,9 @@ export default {
                 border-bottom: 1px solid #999;
                 border-right: 1px solid #999;
 
-                .cell {
-                    margin: .1rem 0;
-                }
+                // .cell {
+                //     margin: .1rem 0;
+                // }
                 
                 .newline {
             	    width: .35rem;

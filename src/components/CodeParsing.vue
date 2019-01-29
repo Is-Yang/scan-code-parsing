@@ -25,11 +25,8 @@
 				</div>
 			</div>
 			<div class="details">
-				自恋爱合约生效之日起
-				<span>3</span>年后
-				<span>10</span>年内，您们共同说出“ 我愿意 ”的那一天，
-				我们将送上“<span class="tip">{{form.productName}}</span>”见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
-
+				自恋爱合约生效之日起<span>&nbsp;3&nbsp;</span>年后
+				<span>10</span>年内，您们共同说出“我愿意”的那一天，我们将送上<span class="tip">〔 {{form.productName}} 〕</span>见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
 				<img class="print" src="../assets/fingerprint.png" />
 			</div>
 			<div class="spouse"></div>
@@ -64,7 +61,7 @@
 				this.rhino_sign = this.$route.query.rhino_sign;
 
 				let url = 'http://lx.hzyctools.com';
-				this.$http.get(url + '/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+				this.$http.get('/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
 					this.$vux.loading.hide();
 					if (data.code !== 1) {
 						this.$vux.toast.text(data.msg);
@@ -140,10 +137,11 @@
 		.code {
 			padding: 10px 20px;
 			text-align: center;
+			margin-top: 14px;
 		}
 
 		.user-info {
-			width: 80%;
+			width:67%;
 			margin: auto;
 			border-top: 1px dashed #888;
 			border-bottom: 1px dashed #888;
@@ -161,10 +159,10 @@
 		.details {
 			width: 80%;
 			margin: 20px auto;
-			text-indent: 20px;
+			text-indent: 34px;
 
 			span {
-				margin: 0 5px;
+				margin: 0 4px;
 			}
 
 			.tip {
