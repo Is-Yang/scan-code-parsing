@@ -2,9 +2,7 @@
   <div id="app" v-transfer-dom>
     <div class="drawer-body">
       <div class="view-container">
-        <div style="height: 100%; overflow: auto;">
           <router-view></router-view>
-        </div>
       </div>
 
       <tabbar>

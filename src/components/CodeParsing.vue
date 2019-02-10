@@ -1,38 +1,40 @@
 <template>
 	<!-- 由于打印时图片都消失了，所以全部用img标签来 -->
-	<div class="code-parsing">
-		<img class="box" src="../assets/box.jpg" alt="边框"/>
-
-		<div class="parsing-content">
-			<div class="head-logo">
-				<img src="../assets/title.png" alt="logo" />
-			</div>
-			<div class="code">
-				<p>合约单号</p>
-				<p class="no">{{order_no}}</p>
-			</div>
-			<div class="user-info">
-				<div>
-					<span>签约人姓名：{{form.realityName}}</span>
-					<span>性别：{{form.weight}}</span>
+    <div style="height: 100%;">
+		<div class="code-parsing">
+			<img class="box" src="../assets/box.jpg" alt="边框"/>
+	
+			<div class="parsing-content">
+				<div class="head-logo">
+					<img src="../assets/title.png" alt="logo" />
 				</div>
-				<div>
-					<span>心上人姓名：{{form.companyName}}</span>
-					<span>性别：{{form.stature}}</span>
+				<div class="code">
+					<p>合约单号</p>
+					<p class="no">{{order_no}}</p>
 				</div>
-				<div>
-					<span>身份证号码：{{form.idCardNumber}}</span>
+				<div class="user-info">
+					<div>
+						<span>签约人姓名：{{form.realityName}}</span>
+						<span>性别：{{form.weight}}</span>
+					</div>
+					<div>
+						<span>心上人姓名：{{form.companyName}}</span>
+						<span>性别：{{form.stature}}</span>
+					</div>
+					<div>
+						<span>身份证号码：{{form.idCardNumber}}</span>
+					</div>
 				</div>
-			</div>
-			<div class="details">
-				自恋爱合约生效之日起<span>&nbsp;3&nbsp;</span>年后
-				<span>10</span>年内，您们共同说出“我愿意”的那一天，我们将送上<span class="tip">〔 {{form.productName}} 〕</span>见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
-				<img class="print" src="../assets/fingerprint.png" />
-			</div>
-			<div class="spouse"></div>
-			<div class="code">
-				<p>生效日期：{{form.dateTime}}</p>
-				<p>东莞中融股权投资有限公司</p>
+				<div class="details">
+					自恋爱合约生效之日起<span>&nbsp;3&nbsp;</span>年后
+					<span>10</span>年内，您们共同说出“我愿意”的那一天，我们将送上<span class="tip">〔 {{form.productName}} 〕</span>见证您们的爱情，无论顺境还是逆境、富裕或是贫穷、健康或是疾病，一生只爱你一人，以此为证，承诺此生真爱不变。
+					<img class="print" src="../assets/fingerprint.png" />
+				</div>
+				<div class="spouse"></div>
+				<div class="code">
+					<p>生效日期：{{form.dateTime}}</p>
+					<p>东莞中融股权投资有限公司</p>
+				</div>
 			</div>
 		</div>
 	</div>
