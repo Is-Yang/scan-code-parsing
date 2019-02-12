@@ -66,7 +66,7 @@
                 <tr>
                     <td colspan="2">
                         <div class="user-info">
-                            <div :style="{'z-index' : sysMobile ? '9' : ''}">
+                            <div>
                                 <p>生效日期：{{signDate}}</p>
                                 <p>东莞中融股权投资有限公司<p>
                                 <p>恋爱合约官网www.liwuhy.com</p>
@@ -209,6 +209,7 @@ export default {
             display: flex;
             justify-content: space-around;
             &>div{
+                z-index: 9;
 				>p {
 					margin: .1rem 0;
 				}
