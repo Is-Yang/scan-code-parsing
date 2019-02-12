@@ -17,16 +17,43 @@
                     </td>
                 </tr>
             </thead>
-            <tbody>
+            <!-- pc端 -->
+            <tbody v-if="!sysMobile">
                 <tr v-for="(item, index) in tableDetail" :key="index">
                     <td>
                     	<span :class="item.title == '签约提示' ? 'newline' : ''">{{item.title}}</span>
                     </td>
-                    <td v-if="item.data != ''">
-                    	<p class="cell" v-if="item.title != '签约提示'">{{tableData[item.data]}}</p>
-                    	<p v-if="item.title == '签约提示'" v-for="(val, i) in tableData[item.data]" :key="i" class="cell">
+                    <td v-if="item.data != '' && item.title != '签约提示'">
+                    	<p class="cell">{{tableData[item.data]}}</p>
+                    </td>
+                    <td v-if="item.data != '' && item.title == '签约提示'">
+                    	<p v-for="(val, i) in tableData[item.data]" :key="i" class="cell">
                             {{val}}
                         </p>
+                    </td>
+                    <td v-if="item.title == '合约期间'">
+                        <p class="cell">
+                            {{item.value}}
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+            <!-- 手机端 -->
+            <tbody v-if="sysMobile">
+                <tr v-for="(item, index) in tableDetail" :key="index">
+                    <td :colspan="item.title == '签约提示' ? '2' : '1'"
+                        :class="{'notify': item.title == '签约提示'}">
+                    	<span v-if="item.title != '签约提示'">{{item.title}}</span>
+
+                        <div v-if="item.title == '签约提示'" class="tit">明示告知</div>
+                        <div v-if="item.data != '' && item.title == '签约提示'" class="info">
+                            <p v-for="(val, i) in tableData[item.data]" :key="i" class="cell">
+                                {{val}}
+                            </p>
+                        </div>
+                    </td>
+                    <td v-if="item.data != '' && item.title != '签约提示'">
+                    	<p class="cell">{{tableData[item.data]}}</p>
                     </td>
                     <td v-if="item.title == '合约期间'">
                         <p class="cell">
@@ -39,17 +66,17 @@
                 <tr>
                     <td colspan="2">
                         <div class="user-info">
-                            <div>
+                            <div :style="{'z-index' : sysMobile ? '9' : ''}">
                                 <p>生效日期：{{signDate}}</p>
                                 <p>东莞中融股权投资有限公司<p>
                                 <p>恋爱合约官网www.liwuhy.com</p>
 
                             </div>
-                            <div>
+                            <div v-if="!sysMobile">
                                 <p>签约人姓名：</p>
                                 <p>日期：</p>
                             </div>
-                            <img class="seal" src="../assets/seal.png" alt="盖章" />
+                            <img class="seal" :class="{'mobile' : sysMobile}" src="../assets/seal.png" alt="盖章" />
                         </div>
                     </td>
                 </tr>
@@ -65,6 +92,7 @@ export default {
             tableData: [],
             realityName: '',
             signDate: '',  // 生效时间日期
+            sysMobile: false,
             tableDetail: [
                 {
                     title: '合约单号',
@@ -91,6 +119,10 @@ export default {
                 }
             ]
         }
+    },
+    mounted() {
+        // 判断是否为手机设备
+        this.sysMobile = /Android|webOS|iPhone|iPod|BlackBerry|Symbian/i.test(navigator.userAgent);
     },
     created () {
         this.$vux.loading.show();
@@ -155,6 +187,19 @@ export default {
 				    display: block;
 				    margin: 0 auto;
                 }
+
+                &.notify {
+                    padding: 0; 
+                    .tit {
+                        padding: .1rem 0;
+                        font-weight: 600;
+                        border-bottom: 1px solid #999;
+                        text-align: center;
+                    }
+                    .info {
+                        padding: .1rem .12rem;
+                    }
+                }
             }
         }
         
@@ -176,6 +221,12 @@ export default {
                 left: 25%;
                 transform: translateX(-25%);
                 opacity: .88;
+                z-index: 1;
+
+                &.mobile {
+                    left: 80%;
+                    transform: translateX(-80%);
+                }
             }
         }
         
