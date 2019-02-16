@@ -73,7 +73,7 @@
 
                             </div>
                             <div v-if="!sysMobile">
-                                <p>签约人姓名：</p>
+                                <p>签字：</p>
                                 <p>日期：</p>
                             </div>
                             <img class="seal" :class="{'mobile' : sysMobile}" src="../assets/seal.png" alt="盖章" />

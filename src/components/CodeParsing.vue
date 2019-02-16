@@ -124,22 +124,20 @@
 	
 
 		.head-logo {
-			width: 80%;
-			height: 115px;
-			margin: 0 auto;
+			width: 70%;
+			margin: -5px auto -10px;
 			// background: url('../assets/title.png') no-repeat top center;
 			// background-size: contain;
 			text-align: center;
 
 			img {
-				height: 100%;
+				width: 100%;
 			}
 		}
 
 		.code {
 			padding: 10px 20px;
 			text-align: center;
-			margin-top: 14px;
 		}
 
 		.user-info {
