@@ -114,6 +114,7 @@
 <style lang='less' scoped>
 	.scan-code {
 		height: 100%;
+		overflow: auto;
 		background-color: #fff;
 		.brand {
 			img {
@@ -136,8 +137,8 @@
 			.search-box {
 				display: flex;
 				align-items: stretch;
-				position: absolute;
-    			width: inherit;
+				// position: absolute;
+    			width: 100%;
 				height: 40px;
 				line-height: 40px;
 				margin-top: .35rem;
@@ -145,7 +146,8 @@
 				border-radius: 4px;
 				
 				.weui-btn {
-					font-size: .3rem;
+					width: 3rem;
+					font-size: .29rem;
 					border: none;
 					border-radius: 0;
 					&:after{
@@ -155,12 +157,13 @@
 				}	
 				
 				.search-order {
+					flex: 1;
 				    -webkit-appearance: none;
 				    background-color: #fff;
 				    border: none;
 				    box-sizing: border-box;
 				    color: #606266;
-				    font-size: .3rem;
+				    font-size: .29rem;
 				    outline: 0;
 				    padding: 0 15px;
 				}
@@ -168,9 +171,10 @@
 		}
 		
 		.info {
-			position: absolute;
-			bottom: 55px;
-			z-index: 499;
+			// position: absolute;
+			// bottom: 55px;
+			// z-index: 499;
+			margin-top: 1.6rem;
 
 			padding: .51rem;
 			font-size: .24rem;

@@ -37,6 +37,8 @@ export default {
 body, html {
     height: 100%;
     width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
     overflow: hidden;
     -webkit-overflow-scrolling: touch
 }
@@ -77,6 +79,7 @@ body {
   width: 2.6rem !important;
 }
 .weui-tabbar {
+  max-width: 768px;
   position: fixed !important;
   z-index: 999;
 }
