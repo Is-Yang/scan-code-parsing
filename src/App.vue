@@ -6,13 +6,21 @@
       </div>
 
       <tabbar>
-          <tabbar-item>
-            <i class="iconfont" slot="icon">&#xe602;</i>
-            <span slot="label">微信</span>
-          </tabbar-item>
-          <tabbar-item>
+          <tabbar-item link="http://love.hzyctools.com/#/home">
             <i class="iconfont" slot="icon">&#xe65b;</i>
             <span slot="label">首页</span>
+          </tabbar-item>
+          <tabbar-item link="http://love.hzyctools.com/#/consultant/online">
+            <i class="iconfont" slot="icon">&#xe6b4;</i>
+            <span slot="label">在线顾问</span>
+          </tabbar-item>
+          <tabbar-item link="/" class="active">
+            <i class="iconfont" slot="icon">&#xe64e;</i>
+            <span slot="label">电子合同</span>
+          </tabbar-item>
+          <tabbar-item link="http://love.hzyctools.com/#/mine">
+            <i class="iconfont" slot="icon">&#xe67b;</i>
+            <span slot="label">我的</span>
           </tabbar-item>
       </tabbar>
     </div>
@@ -79,5 +87,12 @@ body {
 .weui-tabbar {
   position: fixed !important;
   z-index: 999;
+}
+.weui-tabbar .weui-tabbar__icon {
+  margin-bottom: 5px;
+}
+.weui-tabbar .active .weui-tabbar__label,
+.weui-tabbar .active .iconfont{
+  color: #1989fa;
 }
 </style>

@@ -68,7 +68,7 @@
                         <div class="user-info">
                             <div>
                                 <p>生效日期：{{signDate}}</p>
-                                <p>东莞中融股权投资有限公司<p>
+                                <p>广东中融股权投资有限公司<p>
                                 <p>恋爱合约官网www.liwuhy.com</p>
 
                             </div>
@@ -130,8 +130,8 @@ export default {
             this.order_no = this.$route.query.order_no;
             this.rhino_sign = this.$route.query.rhino_sign;
 
-            let url = 'http://lx.hzyctools.com';
-            this.$http.get('/api/index/cert_of_love/order_no/' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+            let url = 'http://love.hzyctools.com';
+            this.$http.get('/love_contract?order_no=' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
                 this.$vux.loading.hide();
                 if (data.code !== 1) {
                     this.$vux.toast.text(data.msg);

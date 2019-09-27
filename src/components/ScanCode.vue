@@ -51,7 +51,7 @@
 	  		},
 	  		scanCode(){
 				this.$vux.loading.show();
-				let url = "http://lx.hzyctools.com";
+				let url = "http://love.hzyctools.com";
 				let _that = this;
 				// 微信扫码
 				if (/MicroMessenger/.test(window.navigator.userAgent)) { 
