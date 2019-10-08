@@ -59,8 +59,8 @@
 	  	created() {
 			this.$vux.loading.show();
 			if (this.$route.query) {
-				this.order_no = this.$route.query.order_no;
-				this.rhino_sign = this.$route.query.rhino_sign;
+				this.order_no = this.$route.query && this.$route.query.order_no;
+				this.rhino_sign = this.$route.query && this.$route.query.rhino_sign;
 
 				let url = 'http://love.hzyctools.com';
 				this.$http.get('/love_contract?order_no=' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {

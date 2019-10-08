@@ -17,8 +17,9 @@
 		</div>
 	    
 	    <div class="info">
-	    	<h4>查询方法</h4>
-	    	<p>扫描恋爱凭证二维码，即可查询详情信息</p>
+	    	<h4>温馨提示：</h4>
+	    	<p>1扫描恋爱凭证“码上详情”或输入“订单编号”即可查询到电子合同信息</p>
+			<p>2电子合同仅供查询，不能作为兑现材料出示</p>
 	    </div>
     </div>
 </template>
@@ -174,7 +175,7 @@
 			// position: absolute;
 			// bottom: 55px;
 			// z-index: 499;
-			margin-top: 1.6rem;
+			margin-top: 0.88rem;
 
 			padding: .51rem;
 			font-size: .24rem;

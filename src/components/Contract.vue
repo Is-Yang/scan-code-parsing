@@ -24,9 +24,9 @@
                     	<span :class="item.title == '签约提示' ? 'newline' : ''">{{item.title}}</span>
                     </td>
                     <td v-if="item.data != '' && item.title != '签约提示'">
-                    	<p class="cell">{{tableData[item.data]}}</p>
+                    	<p class="cell">{{tableData[item.data]}} {{tableData.statu}}</p>
                     </td>
-                    <td v-if="item.data != '' && item.title == '签约提示'">
+                    <td v-if="item.data != '' && item.title == '签约提示'" :class="tableData.statu == 9 ? 'wuxiao' : 'chaxu'">
                     	<p v-for="(val, i) in tableData[item.data]" :key="i" class="cell">
                             {{val}}
                         </p>
@@ -42,7 +42,7 @@
             <tbody v-if="sysMobile">
                 <tr v-for="(item, index) in tableDetail" :key="index">
                     <td :colspan="item.title == '签约提示' ? '2' : '1'"
-                        :class="{'notify': item.title == '签约提示'}">
+                        :class="[{'notify': item.title == '签约提示', 'wuxiao': tableData.statu == 9, 'chaxu': tableData.statu != 9}]">
                     	<span v-if="item.title != '签约提示'">{{item.title}}</span>
 
                         <div v-if="item.title == '签约提示'" class="tit">明示告知</div>
@@ -127,8 +127,8 @@ export default {
     created () {
         this.$vux.loading.show();
         if (this.$route.query) {
-            this.order_no = this.$route.query.order_no;
-            this.rhino_sign = this.$route.query.rhino_sign;
+            this.order_no = this.$route.query && this.$route.query.order_no;
+            this.rhino_sign = this.$route.query && this.$route.query.rhino_sign;
 
             let url = 'http://love.hzyctools.com';
             this.$http.get('/love_contract?order_no=' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
@@ -172,6 +172,7 @@ export default {
             border-collapse: collapse;
             border-spacing: 0;
             display: table;
+            margin: 0 auto;
             td {
                 padding: .1rem .12rem;
                 border-bottom: 1px solid #999;
@@ -199,6 +200,15 @@ export default {
                     .info {
                         padding: .1rem .12rem;
                     }
+                }
+
+                &.wuxiao {
+                    background: url('../assets/wuxiao.png') no-repeat center center;
+                    background-size: contain;
+                }
+                &.chaxu {
+                    background: url('../assets/chaxu.png') no-repeat center center;
+                    background-size: contain;
                 }
             }
         }
