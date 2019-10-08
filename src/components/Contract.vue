@@ -24,7 +24,7 @@
                     	<span :class="item.title == '签约提示' ? 'newline' : ''">{{item.title}}</span>
                     </td>
                     <td v-if="item.data != '' && item.title != '签约提示'">
-                    	<p class="cell">{{tableData[item.data]}} {{tableData.statu}}</p>
+                    	<p class="cell">{{tableData[item.data]}}</p>
                     </td>
                     <td v-if="item.data != '' && item.title == '签约提示'" :class="tableData.statu == 9 ? 'wuxiao' : 'chaxu'">
                     	<p v-for="(val, i) in tableData[item.data]" :key="i" class="cell">
