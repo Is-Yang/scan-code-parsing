@@ -153,7 +153,7 @@ export default {
     .contract-wrapper {
         background-color: #fff;
         padding: 0 .3rem;
-        font-size: .3rem;
+        font-size: 0.26rem;
         font-family: simsun;
         
         .contract-logo {

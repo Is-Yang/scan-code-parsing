@@ -104,7 +104,7 @@
 		@bottom: 58px;
 		height: calc(~"100%" - @bottom);
 		padding: 30px 5%;
-		font-size: .3rem;
+		font-size: 0.26rem;
 		font-family: kaiti;
 
 		.parsing-content {
