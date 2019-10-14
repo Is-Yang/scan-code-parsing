@@ -11,8 +11,8 @@
                 <tr>
                     <td colspan="2">
                         <p class="cell">
-                            鉴于签约人已于本公司签订恋爱合约，并按合约约定向本公司支付合约费，本公司同意按照合约条款的约定承担
-                            签约责任，特立本合约单为凭。合约条款，兑现申请书及合约单是本合约不可分割的组成部分。
+                            鉴于签约人已与本公司签订恋爱合约，并按合约约定向本公司支付合约费，本公司同意按照合约条款的约定承担签约责任，特立本合约单为凭。
+                            合约条款、兑现申请书及合约单是本合约不可分割的组成部分。
                         </p>
                     </td>
                 </tr>
@@ -127,11 +127,11 @@ export default {
     created () {
         this.$vux.loading.show();
         if (this.$route.query) {
-            this.order_no = this.$route.query && this.$route.query.order_no;
-            this.rhino_sign = this.$route.query && this.$route.query.rhino_sign;
+            let order_no = this.$route.query && this.$route.query.order_no;
+            let rhino_sign = this.$route.query && this.$route.query.rhino_sign;
 
             let url = 'http://love.hzyctools.com';
-            this.$http.get('/love_contract?order_no=' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+            this.$http.get('/love_contract?order_no=' + order_no + '&rhino_sign=' + rhino_sign + '&order_id=' + order_no).then(({data}) => {
                 this.$vux.loading.hide();
                 if (data.code !== 1) {
                     this.$vux.toast.text(data.msg);

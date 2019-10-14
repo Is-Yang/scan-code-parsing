@@ -10,7 +10,7 @@
 				</div>
 				<div class="code">
 					<p>合约单号</p>
-					<p class="no">{{order_no}}</p>
+					<p class="no">{{form.orderNo}}</p>
 				</div>
 				<div class="user-info">
 					<div>
@@ -48,8 +48,6 @@
 	  	},
 	  	data () {
 	  		return {
-				order_no: '',
-				rhino_sign: '',
 				form: {}
 	  		}
 		},
@@ -59,11 +57,11 @@
 	  	created() {
 			this.$vux.loading.show();
 			if (this.$route.query) {
-				this.order_no = this.$route.query && this.$route.query.order_no;
-				this.rhino_sign = this.$route.query && this.$route.query.rhino_sign;
+				let order_no = this.$route.query && this.$route.query.order_no;
+				let rhino_sign = this.$route.query && this.$route.query.rhino_sign;
 
 				let url = 'http://love.hzyctools.com';
-				this.$http.get('/love_contract?order_no=' + this.order_no + '&rhino_sign=' + this.rhino_sign).then(({data}) => {
+				this.$http.get('/love_contract?order_no=' + order_no + '&rhino_sign=' + rhino_sign + '&order_id=' + order_no).then(({data}) => {
 					this.$vux.loading.hide();
 					if (data.code !== 1) {
 						this.$vux.toast.text(data.msg);
@@ -78,10 +76,12 @@
 							Weight,
 							ProductName,
 							DateTime,
-							IDCardNumber
+							IDCardNumber,
+							OrderNo
 						} = res;
 
 						this.form = {
+							orderNo: OrderNo,
 							companyName: CompanyName,
 							realityName: RealityName,
 							stature: Stature,
