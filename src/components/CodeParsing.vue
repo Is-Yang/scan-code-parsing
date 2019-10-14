@@ -61,7 +61,7 @@
 				let rhino_sign = this.$route.query && this.$route.query.rhino_sign;
 
 				let url = 'http://love.hzyctools.com';
-				this.$http.get('/love_contract?order_no=' + order_no + '&rhino_sign=' + rhino_sign + '&order_id=' + order_no).then(({data}) => {
+				this.$http.get('/love_contract?order_no=' + order_no + '&rhino_sign=' + rhino_sign).then(({data}) => {
 					this.$vux.loading.hide();
 					if (data.code !== 1) {
 						this.$vux.toast.text(data.msg);
